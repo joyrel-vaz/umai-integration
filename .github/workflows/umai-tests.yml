@@ -33,7 +33,7 @@ jobs:
 
       - name: Run UMAI tests
         run: |
-          mkdir -p test_data/outputs
+          mkdir -p test_data/outputs && chmod 777 test_data/outputs
           docker run --rm \
             --platform linux/amd64 \
             -v ${{ github.workspace }}/test_data:/umai_data \
