@@ -55,3 +55,4 @@ jobs:
           files: test_data/outputs/junit.xml
           comment_title: UMAI Test Results
           check_name: UMAI Tests
+          check_run: false
