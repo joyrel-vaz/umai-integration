@@ -49,7 +49,7 @@ jobs:
           retention-days: 30
 
       - name: Publish test results
-        if: always() && github.actor == 'nektos/act'
+        if: always()
         uses: dorny/test-reporter@v1
         with:
           name: UMAI Test Results
