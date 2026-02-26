@@ -3,6 +3,8 @@ pipeline {
 
     environment {
         UMAI_API_KEY = credentials('umai-api-key')
+        PATH = "/usr/local/bin:${env.PATH}"
+
     }
 
     stages {
