@@ -19,14 +19,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Dockerhub Login
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
       - name: Pull UMAI test runner image
-        run: docker pull --platform linux/amd64 usemangoai/test-runner-dev:latest
+        run: docker pull --platform linux/amd64 usemangoai/test-runner:latest
 
       - name: Create api key file
         run: echo "${{ secrets.API_KEY }}" > umai_data/pipeline_inputs/api_key.txt
@@ -38,7 +32,7 @@ jobs:
             --platform linux/amd64 \
             -v ${{ github.workspace }}/umai_data:/umai_data \
             -e GENERATE_JUNIT_REPORT=true \
-            usemangoai/test-runner-dev:latest
+            usemangoai/test-runner:latest
 
       - name: Upload JUnit report
         uses: actions/upload-artifact@v4
