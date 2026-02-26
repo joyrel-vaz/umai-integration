@@ -29,14 +29,14 @@ jobs:
         run: docker pull --platform linux/amd64 usemangoai/test-runner-dev:latest
 
       - name: Create api key file
-        run: echo "${{ secrets.API_KEY }}" > test_data/pipeline_inputs/api_key.txt
+        run: echo "${{ secrets.API_KEY }}" > umai_data/pipeline_inputs/api_key.txt
 
       - name: Run UMAI tests
         run: |
-          mkdir -p test_data/outputs && chmod 777 test_data/outputs
+          mkdir -p umai_data/outputs && chmod 777 umai_data/outputs
           docker run --rm \
             --platform linux/amd64 \
-            -v ${{ github.workspace }}/test_data:/umai_data \
+            -v ${{ github.workspace }}/umai_data:/umai_data \
             -e GENERATE_JUNIT_REPORT=true \
             usemangoai/test-runner-dev:latest
 
@@ -45,7 +45,7 @@ jobs:
         if: always()
         with:
           name: umai-test-results
-          path: test_data/outputs/junit.xml
+          path: umai_data/outputs/junit.xml
           retention-days: 30
 
       - name: Publish test results
@@ -53,5 +53,5 @@ jobs:
         uses: dorny/test-reporter@v1
         with:
           name: UMAI Test Results
-          path: test_data/outputs/junit.xml
+          path: umai_data/outputs/junit.xml
           reporter: java-junit
