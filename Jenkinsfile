@@ -4,17 +4,24 @@ pipeline {
     environment {
         UMAI_API_KEY = credentials('umai-api-key')
         PATH = "/usr/local/bin:${env.PATH}"
-
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
         stage('Run UMAI Tests') {
             steps {
                 sh '''
-                    docker pull --platform linux/amd64 usemangoai/test-runner:latest
+                    mkdir -p umai_data/pipeline_inputs
+                    mkdir -p umai_data/outputs
 
                     echo "$UMAI_API_KEY" > umai_data/pipeline_inputs/api_key.txt
-                    mkdir -p umai_data/outputs
+
+                    docker pull --platform linux/amd64 usemangoai/test-runner:latest
 
                     docker run --rm \
                       --platform linux/amd64 \
@@ -28,7 +35,7 @@ pipeline {
 
     post {
         always {
-            junit 'umai_data/outputs/junit.xml'
+            junit allowEmptyResults: true, testResults: 'umai_data/outputs/junit.xml'
         }
     }
 }
