@@ -4,7 +4,7 @@
     "ece538a8-1296-4076-ba2b-72a3b3120b35"
   ],
   "execution_config": {
-    "testSuiteName": "Batch run-ggSz-2026-02-23",
+    "testSuiteName": "demo",
     "browserOption": "custom",
     "incognito": false,
     "selectedBrowsers": ["chrome"],
