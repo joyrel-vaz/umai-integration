@@ -1,13 +1,15 @@
 {
   "test_ids": [
-    "535f38b1-5bb9-4b02-80c0-a04503134db6",
-    "ece538a8-1296-4076-ba2b-72a3b3120b35"
+    "baa87f42-c5ab-4601-8fc4-c8bda0ad02d4",
+    "535f38b1-5bb9-4b02-80c0-a04503134db6"
   ],
   "execution_config": {
-    "testSuiteName": "demo",
+    "testSuiteName": "Batch run-uE6t-2026-02-24",
     "browserOption": "custom",
     "incognito": false,
-    "selectedBrowsers": ["chrome"],
+    "selectedBrowsers": [
+      "Chrome"
+    ],
     "selectedEnvironment": ""
   }
 }
