@@ -19,6 +19,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Prepare data directories
+        run: |
+          mkdir -p umai_data/outputs umai_data/pipeline_inputs
+          chmod 777 umai_data/outputs umai_data/pipeline_inputs
+
       - name: Pull UMAI test runner image
         run: docker pull --platform linux/amd64 usemangoai/test-runner:latest
 
@@ -27,8 +32,6 @@ jobs:
 
       - name: Run UMAI tests
         run: |
-          mkdir -p umai_data/outputs && chmod 777 umai_data/outputs
-          chmod 777 umai_data/pipeline_inputs
           docker run --rm \
             --platform linux/amd64 \
             -v ${{ github.workspace }}/umai_data:/umai_data \
