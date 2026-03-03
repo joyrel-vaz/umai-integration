@@ -4,7 +4,7 @@
     "ece538a8-1296-4076-ba2b-72a3b3120b35"
   ],
   "execution_config": {
-    "testSuiteName": "pass suite",
+    "testSuiteName": "Demo test suite",
     "browserOption": "custom",
     "incognito": false,
     "selectedBrowsers": ["chrome"],
